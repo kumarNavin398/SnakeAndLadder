@@ -1,5 +1,6 @@
 package com.bridgelabz;
 
+
 //Day 4 Snake And Ladder Simulator
 public class SnakeAndLadder
 {
@@ -18,13 +19,15 @@ public class SnakeAndLadder
         System.out.println("---------- Welcome to the Game of SNAKES AND LADDERS!! ----------");
 
         int positionA = 0;
+        int diceCount = 0;
 
         while(positionA < MAX_POSITION) {
 
             int dice = getRandomInteger(7,1);
-            System.out.println("dice : "+dice);
+            diceCount ++;
+//			System.out.println("dice : "+dice);
             int checkPlay = (int) Math.floor(Math.random()*10)%3;
-            System.out.println("checkplay : "+checkPlay);
+//			System.out.println("checkplay : "+checkPlay);
 
             switch(checkPlay) {
                 case NO_PLAY:
@@ -32,17 +35,21 @@ public class SnakeAndLadder
 
                 case LADDER:
                     positionA += dice;
+                    if(positionA > MAX_POSITION) {
+                        positionA = positionA-dice;
+                    }
                     break;
 
                 case SNAKE:
                     positionA -= dice;
-                    if(positionA < MIN_POSITION )
+                    if(positionA < MIN_POSITION ) {
                         positionA = 0;
+                    }
                     break;
             }
-            System.out.println("end : "+positionA);
+            System.out.println("Position after Die Roll "+diceCount+" : "+positionA);
         }
-
-    }//System.out.println(startPositionA);
+        System.out.println("Total Dice Rolls : "+diceCount);
+    }
 }
 
